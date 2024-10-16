@@ -1,0 +1,30 @@
+creating react project
+
+npm create vite@latest title of the project
+npm install
+npm run dev
+install tailwind using
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+Go to tailwind.config.js and paste
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+Go to index.css and add paste this
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+To fix the error like in the index.css of the tailwind code that you paste. Go to the json settings in your vscode and paste this
+"files.associations": {
+  "*.css": "tailwindcss"
+},
+Work first on the entire html homepage then after break it into pieces(jsx components)
