@@ -28,3 +28,5 @@ To fix the error like in the index.css of the tailwind code that you paste. Go t
   "*.css": "tailwindcss"
 },
 Work first on the entire html homepage then after break it into pieces(jsx components)
+Start from nav to bottom
+when listing a list of sample use {variableName.map((VN) => ())};
