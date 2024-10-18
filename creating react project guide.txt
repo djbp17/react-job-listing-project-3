@@ -30,3 +30,46 @@ To fix the error like in the index.css of the tailwind code that you paste. Go t
 Work first on the entire html homepage then after break it into pieces(jsx components)
 Start from nav to bottom
 when listing a list of sample use {variableName.map((VN) => ())};
+
+installing icon packages npm i react-icons
+then import in any of your components to use the icons. and the from would be "from 'react-icons/fa(Depende sa icons na website or link na gamiton nimo. Example FontAwesome so we use fa). Example import {FaMapMarker} from 'react-icons/fa';
+
+using useState syntax
+const [currentStateVariable, setCurrentStateVariable] = useState(false)- you can set here the value that you want to give to your current state
+
+We need to install router so that we can route on different pages
+npm i react-router-dom
+then import it 
+import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from 'react-router-dom';
+
+For creating MainLayout. In the MainLayout.jsx you need to import the {Outlet} from 'react-router-dom'
+
+Then in the App.jsx. You'll just need to surround the paths that you want your MainLayout to appear
+const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+      </Route>
+    )
+  );
+  return <RouterProvider router={router} />;
+
+We use asterisk(*) to catch all error if there's any- <Route path="*" element={<NotFoundPage />} />
+
+We use NavLink because it adds class active to a link- import { NavLink } from 'react-router-dom';
+
+ const linkClass = ({ isActive }) =>
+    isActive
+      ? ''
+      : '';
+
+Install JSON server
+npm i -D json-server
+
+Then go to package json. under scripts add "server": "json-server --watch src/jobs.json --port 8000"
+
+Then run npm run server
+
+For Loading animation. Install a package react spinner
+npm i react-spinner
+Create a seperate component for the spinner
