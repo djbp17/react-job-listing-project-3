@@ -45,6 +45,12 @@ import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} fr
 For creating MainLayout. In the MainLayout.jsx you need to import the {Outlet} from 'react-router-dom'
 
 Then in the App.jsx. You'll just need to surround the paths that you want your MainLayout to appear
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from 'react-router-dom';
 const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
@@ -73,3 +79,5 @@ Then run npm run server
 For Loading animation. Install a package react spinner
 npm i react-spinner
 Create a seperate component for the spinner
+
+useEffect and DataLoader are examples of fetching datas

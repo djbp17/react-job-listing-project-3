@@ -2,11 +2,7 @@ import React from 'react';
 import JobListings from '../components/JobListings';
 
 const JobsPage = () => {
-  return (
-    <section className="bg-blue- px-4 py-10">
-      <JobListings />
-    </section>
-  );
+  return <JobListings />;
 };
 
 export default JobsPage;
