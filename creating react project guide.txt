@@ -81,3 +81,10 @@ npm i react-spinner
 Create a seperate component for the spinner
 
 useEffect and DataLoader are examples of fetching datas
+
+{useNavigate } is use to redirect to other page. And to use it we need to initialize first  it like: const navigate = useNavigate();
+
+Install react toastify to add more assuring feeling if we successfully add, delete or edit a certin transaction. And avisable to import/put it in your MainLayout of your project. This toastify is absolute and it placed up in the corner
+npm i react-toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
