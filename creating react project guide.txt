@@ -1,8 +1,19 @@
 creating react project
 
 npm create vite@latest title of the project
-npm install
+
+cd title of the project
+
+title of the project: code . - To open VS code
+
+Configure the vite and add server: { port: 3000, }, Buhata ni if gusto ka ichange ang default localhost port sa pag run sa imong website
+
+npm install - IF wala paka naka install ug npm sa imong device
+
 npm run dev
+
+delete App.css your choice para limpyo and ibilin lang ang index.css- Mag install man japon ug tailwind na mag handle sa css design
+
 install tailwind using
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
@@ -29,7 +40,7 @@ To fix the error like in the index.css of the tailwind code that you paste. Go t
 },
 Work first on the entire html homepage then after break it into pieces(jsx components)
 Start from nav to bottom
-when listing a list of sample use {variableName.map((VN) => ())};
+when listing a list of sample use {variableName(originalname).map((VN) => ())};
 
 installing icon packages npm i react-icons
 then import in any of your components to use the icons. and the from would be "from 'react-icons/fa(Depende sa icons na website or link na gamiton nimo. Example FontAwesome so we use fa). Example import {FaMapMarker} from 'react-icons/fa';
@@ -37,12 +48,21 @@ then import in any of your components to use the icons. and the from would be "f
 using useState syntax
 const [currentStateVariable, setCurrentStateVariable] = useState(false)- you can set here the value that you want to give to your current state
 
+Note:
+React is a library not a framework.
+react itself cannot handle ti add seperate pages so we will use
+react-router as the official router for react. React router is a seperate package that's why we need to install it.
+
 We need to install router so that we can route on different pages
-npm i react-router-dom
+npm i react-router-dom - Once na install napud ni kaya makagamit napud ta sa {Link} and {NavLink} for redirection sa atong links
+
 then import it 
 import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from 'react-router-dom';
 
-For creating MainLayout. In the MainLayout.jsx you need to import the {Outlet} from 'react-router-dom'
+For creating MainLayout. In the MainLayout.jsx you need to import the {Outlet} from 'react-router-dom' Because in every page that was under the MainLayout will go through the Outlet.
+
+Then add the imported Outlet to your MainLyout. Like this:
+<Outlet/>
 
 Then in the App.jsx. You'll just need to surround the paths that you want your MainLayout to appear
 import {
@@ -60,15 +80,33 @@ const router = createBrowserRouter(
   );
   return <RouterProvider router={router} />;
 
+
 We use asterisk(*) to catch all error if there's any- <Route path="*" element={<NotFoundPage />} />
 
+We are not usually using <a></a> tags for navigation links as it does a complete page refresh while using Link tag is doesnt do an actual refresh but it redirects you to the page you set and it's very fast but there is also NavLink the same function as the Link but it has additional feature like an active link--
+
+The format for using atag.
+<a
+href=''>
+</a>
+
+The format for using Link tag.
+<NavLink
+to=''>
+</NavLink>
+
 We use NavLink because it adds class active to a link- import { NavLink } from 'react-router-dom';
+The format for using NavLink tag.
+<Link
+to=''>
+</Link>
 
  const linkClass = ({ isActive }) =>
     isActive
-      ? ''
-      : '';
+      ? 'Condition if true diri'
+      : 'Condition if false diri';
 
+fetching data from a backend using JSON server for testing
 Install JSON server
 npm i -D json-server
 
@@ -79,12 +117,74 @@ Then run npm run server
 For Loading animation. Install a package react spinner
 npm i react-spinner
 Create a seperate component for the spinner
+Then import ClipLoader from 'react-spinners/Cliploader' inside your spinner component
+
+Then this spinner will pass in a prop which we name as loading
+
+then it will return a self-closing tag of <ClipLoader inside is some arguments and props like-- color:'#111111' loading={loading}- inside the parenthesis is the prop loading that was pass in the spinner component  cssOverride={override}-Inside the parenthesis is a variable name that holds the custome style inside the spinner component-- This is used you want to override or add a custom style  /> 
 
 useEffect and DataLoader are examples of fetching datas
+Data loader- basically create a function within the file and then we can export it from the current file and then use it as a function in other areas of the website. It will server as a Global State and we can use or pass it to other components.
 
-{useNavigate } is use to redirect to other page. And to use it we need to initialize first  it like: const navigate = useNavigate();
+{useParams} from 'react-router-dom' - This useParams hook can get a specific ID base on the data that was click on the front end
+
+When we try to export a function from other page to another page we need to enclosed it with curly braces as it is not the default page. It just a function of the original page. 
+
+Also, to make the function pass in the router or to make the function works in the router we are going to import a useLoaderData to the parent component. Then once i-add na siya sa other components/page ang loader={jobloader} na naa sa router kay ma access napud niya mismo ang function sa jobloader
+Then add this line of code in the page
+
+const (variableName) = useLoaderData();
+
+{useNavigate } is use to redirect to other page after we submit or click a button. And to use it we need to initialize first  it like: const navigate = useNavigate();
 
 Install react toastify to add more assuring feeling if we successfully add, delete or edit a certin transaction. And avisable to import/put it in your MainLayout of your project. This toastify is absolute and it placed up in the corner
 npm i react-toastify
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+Then you can import the {toast} from 'react-toastify'; in the page where you want to use it.
+
+toast.success('Job Deleted Successfully')
+
+
+`````````````````````````````````````````````````````````````````
+React shorcut codes and other important stuff
+
+rafce - export default is at the bottom
+rafc- export const is at the first line of code
+rfc- regular function that has export default function at the start of the first line of code
+
+props: can be use not only to change the content but also change the styling
+{Link} is also works as {NavLink} but NavLink has an additional active link
+
+useEffect: Fetching data when the components renders
+--useEffect also takes in things: it takes a function and dependency array- so in the dependency array- In most cases you will just set it as an empty array because if you don't it's going to be a NeverEnding Loop. 
+Syntax of UseEffect below:
+useEffect(() => {}, []);
+
+async and await = are used for fetching data from the server. This ensure that the request is successful then it will return a data but if it fails to fetch it will return an error or failed message
+
+try catch finally syntax = in the finally part, whatever you put in the finally part it will run either it fails or not
+
+A parameter is a variable in a function definition. It is a placeholder and hence does not have a concrete value. An argument is a value passed during function invocation.
+
+vscode extension
+multiple cursor case preserver by cardinal90 
+
+if you are adding an inline style, you should use double curly braces like: style={{color: 'red'}};
+
+Flow:
+You create a component
+Create a page and add the neccesary component
+Then add the page route to the App
+
+Creating a proxy for the link of fetching data from your localhost in vite
+ proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+
+
